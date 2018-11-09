@@ -29,7 +29,7 @@ class NilaiSiswaController extends Controller
     	$total = $uts + $uas;
 
         if (NilaiSiswa::where('npm', $data['npm'])->count() > 0) {
-            return redirect()->route('value')->with('danger','NPM '.$data['npm'].' sudah digunakan!');
+            return redirect()->back()->with('danger','NPM '.$data['npm'].' sudah digunakan!');
         }
     	if ($total >= 80 and $total <= 100) {
     		$grade = 'A';
@@ -102,21 +102,20 @@ class NilaiSiswaController extends Controller
         } else {
             if (NilaiSiswa::where('npm', $npm)->count() > 0) {
                 return redirect()->route('edit_value', NilaiSiswa::find($id)->id_mahasiswa)->with('danger','Npm '.$npm.' sudah ada!');
-            } else {
-                NilaiSiswa::find($id)->update([
-                    'npm' => $data['npm'],
-                    'nama' => $data['nama'],
-                    'id_matkul' => $data['matkul'],
-                    'nilai_uts' => $data['nuts'],
-                    'nilai_uas' => $data['nuas'],
-                    'grade' => $grade,
-                ]);
             }
+            NilaiSiswa::find($id)->update([
+                'npm' => $data['npm'],
+                'nama' => $data['nama'],
+                'id_matkul' => $data['matkul'],
+                'nilai_uts' => $data['nuts'],
+                'nilai_uas' => $data['nuas'],
+                'grade' => $grade,
+            ]);
         }
 
         return redirect()->route('value')->with('notif','Data nilai berhasil diubah!'); 
     }
-
+    
     public function delete($id) {
         NilaiSiswa::find($id)->delete();
         return redirect()->route('value')->with('notif','Data berhasil dihapus!');

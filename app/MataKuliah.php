@@ -14,8 +14,4 @@ class MataKuliah extends Model
     protected $hidden = [
     	'created_at','updated_at'
     ];
-
-    public function siswa() {
-    	return $this->hasMany('App\NilaiSiswa','id_matkul','id_matkul');
-    }
 }

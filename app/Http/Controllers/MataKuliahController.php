@@ -22,7 +22,7 @@ class MataKuliahController extends Controller
     	));
 
         if (MataKuliah::where('kode_matkul', $data['kd_mk'])->count() > 0) {
-            return redirect()->route('matkul')->with('danger','Kode matakuliah '.$data['kd_mk'].' sudah digunakan!');  
+            return redirect()->back()->with('danger','Kode matakuliah '.$data['kd_mk'].' sudah digunakan!');  
         } 
         
     	MataKuliah::create([
@@ -51,12 +51,11 @@ class MataKuliahController extends Controller
         if ($kd_mk != $search_kd) {
             if (MataKuliah::where('kode_matkul', $kd_mk)->count() > 0) {
                 return redirect()->route('edit_mk', MataKuliah::find($id)->id_matkul)->with('danger','Kode '.$kd_mk.' sudah ada!');
-            } else {
-                MataKuliah::find($id)->update([
-                    'kode_matkul' => $kd_mk,
-                    'nama_matkul' => $data['mk'],
-                ]);
-            }
+            } 
+            MataKuliah::find($id)->update([
+                'kode_matkul' => $kd_mk,
+                'nama_matkul' => $data['mk'],
+            ]);
         } else {
             MataKuliah::find($id)->update([
                 'nama_matkul' => $data['mk'],
@@ -69,7 +68,7 @@ class MataKuliahController extends Controller
     public function delete($id) {
         $mk = MataKuliah::find($id);
         if ($mk->siswa->count() > 0) {
-            return redirect()->route('matkul')->with('danger','MataKuliah '.$mk->nama_matkul.' tidak bisa dihapus karena berhubungan dengan data lain!');
+            return redirect()->back()->with('danger','MataKuliah '.$mk->nama_matkul.' tidak bisa dihapus karena berhubungan dengan data lain!');
         }
         $mk->delete();
         return redirect()->route('matkul')->with('notif', 'MataKuliah '.$mk->nama_matkul.' berhasil dihapus!');

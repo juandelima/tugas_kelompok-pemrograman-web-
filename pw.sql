@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 31, 2018 at 03:34 PM
+-- Generation Time: Nov 09, 2018 at 10:07 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -41,8 +41,11 @@ CREATE TABLE `matkul` (
 --
 
 INSERT INTO `matkul` (`id_matkul`, `kode_matkul`, `nama_matkul`, `created_at`, `updated_at`) VALUES
-(1, 'A001', 'Algoritma', '2018-10-31 06:29:51', '2018-10-31 06:29:51'),
-(2, 'A002', 'Struktur Data', '2018-10-31 06:30:07', '2018-10-31 06:30:07');
+(3, 'TI03', 'Matematika Informatika', '2018-11-07 19:04:23', '2018-11-07 12:04:23'),
+(9, 'A004', 'Bisnis Informatika', '2018-11-07 06:13:18', '2018-11-07 06:13:18'),
+(10, 'A002', 'Struktur Data 1', '2018-11-07 16:02:52', '2018-11-07 09:02:52'),
+(16, 'A001', 'Algoritma', '2018-11-07 09:20:27', '2018-11-07 09:20:27'),
+(17, 'B012', 'Bahasa Inggris', '2018-11-07 09:34:36', '2018-11-07 09:34:36');
 
 -- --------------------------------------------------------
 
@@ -67,8 +70,10 @@ CREATE TABLE `nilai_mahasiswa` (
 --
 
 INSERT INTO `nilai_mahasiswa` (`id_mahasiswa`, `npm`, `nama`, `id_matkul`, `nilai_uts`, `nilai_uas`, `grade`, `created_at`, `updated_at`) VALUES
-(0, '53415615', 'Juan', 1, 89, 80, 'A', '2018-10-31 07:26:44', '2018-10-31 07:26:44'),
-(0, '5511', 'Ario Waskita', 2, 85, 40, 'B', '2018-10-31 07:27:26', '2018-10-31 07:27:26');
+(1, '53415615', 'Juan Valerian Delima', 16, 90, 85, 'A', '2018-11-07 18:33:11', '2018-11-07 11:33:11'),
+(2, '45215116', 'Ario Waskita', 10, 85, 65, 'B', '2018-11-07 08:49:54', '2018-11-07 08:49:54'),
+(3, '25215718', 'Andi Ler', 3, 65, 55, 'C', '2018-11-07 18:34:56', '2018-11-07 11:34:56'),
+(4, '53415712', 'Nagyan Yosse', 17, 88, 75, 'A', '2018-11-07 18:34:27', '2018-11-07 11:34:27');
 
 --
 -- Indexes for dumped tables
@@ -82,6 +87,12 @@ ALTER TABLE `matkul`
   ADD UNIQUE KEY `kode_matkul` (`kode_matkul`);
 
 --
+-- Indexes for table `nilai_mahasiswa`
+--
+ALTER TABLE `nilai_mahasiswa`
+  ADD PRIMARY KEY (`id_mahasiswa`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -89,7 +100,13 @@ ALTER TABLE `matkul`
 -- AUTO_INCREMENT for table `matkul`
 --
 ALTER TABLE `matkul`
-  MODIFY `id_matkul` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_matkul` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT for table `nilai_mahasiswa`
+--
+ALTER TABLE `nilai_mahasiswa`
+  MODIFY `id_mahasiswa` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
